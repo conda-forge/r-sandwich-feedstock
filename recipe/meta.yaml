@@ -1,5 +1,4 @@
-{% set version = '2.3-4' %}
-
+{% set version = '2.5-0' %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -10,40 +9,47 @@ package:
 source:
   fn: sandwich_{{ version }}.tar.gz
   url:
-    - https://cran.r-project.org/src/contrib/sandwich_{{ version }}.tar.gz
-    - https://cran.r-project.org/src/contrib/Archive/sandwich/sandwich_{{ version }}.tar.gz
-  sha256: 2052f7e3d19a05c372f422c5480f1058a4107e420cd038a9bd7240c4f0746d4d
+    - {{ cran_mirror }}/src/contrib/sandwich_{{ version }}.tar.gz
+    - {{ cran_mirror }}/src/contrib/Archive/sandwich/sandwich_{{ version }}.tar.gz
+  sha256: 6cc144af20739eb23e5539010d3833d7c7fc53cbca2addb583ab933167c11399
 
 build:
+  merge_build_host: True  # [win]
   number: 0
   skip: true  # [win32]
-
   rpaths:
     - lib/R/lib/
     - lib/
 
 requirements:
   build:
+    - {{posix}}zip               # [win]
+  host:
     - r-base
     - r-zoo
-
   run:
     - r-base
     - r-zoo
 
 test:
   commands:
-    - $R -e "library('sandwich')"  # [not win]
+    - $R -e "library('sandwich')"           # [not win]
     - "\"%R%\" -e \"library('sandwich')\""  # [win]
 
 about:
   home: https://CRAN.R-project.org/package=sandwich
   license: GPL-2 | GPL-3
-  summary: Model-robust standard error estimators for cross-sectional, time series, and longitudinal
-    data.
+  summary: Model-robust standard error estimators for cross-sectional, time series, clustered,
+    panel, and longitudinal data.
   license_family: GPL3
+  license_file: '{{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-3'  # [unix]
+  license_file: '{{ environ["PREFIX"] }}\R\share\licenses\GPL-3'  # [win]
 
 extra:
   recipe-maintainers:
     - johanneskoester
     - bgruening
+    - daler
+    - jdblischak
+    - cbrueffer
+    - dbast
