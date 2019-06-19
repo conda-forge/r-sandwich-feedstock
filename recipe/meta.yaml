@@ -1,4 +1,4 @@
-{% set version = '2.5-0' %}
+{% set version = '2.5-1' %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -7,16 +7,15 @@ package:
   version: {{ version|replace("-", "_") }}
 
 source:
-  fn: sandwich_{{ version }}.tar.gz
   url:
     - {{ cran_mirror }}/src/contrib/sandwich_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/sandwich/sandwich_{{ version }}.tar.gz
-  sha256: 6cc144af20739eb23e5539010d3833d7c7fc53cbca2addb583ab933167c11399
+  sha256: dbef6f4d12b83e166f9a2508b7c732b04493641685d6758d29f3609e564166d6
 
 build:
-  noarch: generic
   merge_build_host: True  # [win]
-  number: 1000
+  number: 0
+  noarch: generic
   rpaths:
     - lib/R/lib/
     - lib/
@@ -42,14 +41,25 @@ about:
   summary: Model-robust standard error estimators for cross-sectional, time series, clustered,
     panel, and longitudinal data.
   license_family: GPL3
-  license_file: '{{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-3'  # [unix]
-  license_file: '{{ environ["PREFIX"] }}\R\share\licenses\GPL-3'  # [win]
+  license_file: '{{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-2'
 
 extra:
   recipe-maintainers:
-    - johanneskoester
-    - bgruening
-    - daler
-    - jdblischak
-    - cbrueffer
-    - dbast
+    - conda-forge/r
+
+# Package: sandwich
+# Version: 2.5-1
+# Date: 2019-04-06
+# Title: Robust Covariance Matrix Estimators
+# Authors@R: c(person(given = "Achim", family = "Zeileis", role = c("aut", "cre"), email = "Achim.Zeileis@R-project.org", comment = c(ORCID = "0000-0003-0918-3766")), person(given = "Thomas", family = "Lumley", role = "aut", email = "tlumley@u.washington.edu"), person(given = "Susanne", family = "Berger", role = "ctb", email = "Susanne.Berger@uibk.ac.at"), person(given = "Nathaniel", family = "Graham", role = "ctb", email = "npgraham1@gmail.com"))
+# Description: Model-robust standard error estimators for cross-sectional, time series, clustered, panel, and longitudinal data.
+# Depends: R (>= 2.10.0)
+# Imports: stats, utils, zoo
+# Suggests: AER, car, geepack, lattice, lmtest, MASS, multiwayvcov, parallel, pcse, plm, pscl, scatterplot3d, stats4, strucchange, survival
+# License: GPL-2 | GPL-3
+# NeedsCompilation: no
+# Packaged: 2019-04-06 21:24:19 UTC; zeileis
+# Author: Achim Zeileis [aut, cre] (<https://orcid.org/0000-0003-0918-3766>), Thomas Lumley [aut], Susanne Berger [ctb], Nathaniel Graham [ctb]
+# Maintainer: Achim Zeileis <Achim.Zeileis@R-project.org>
+# Repository: CRAN
+# Date/Publication: 2019-04-06 21:59:16 UTC
