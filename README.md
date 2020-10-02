@@ -5,7 +5,7 @@ Home: https://CRAN.R-project.org/package=sandwich
 
 Package license: GPL-2 | GPL-3
 
-Feedstock license: BSD 3-Clause
+Feedstock license: BSD-3-Clause
 
 Summary: Model-robust standard error estimators for cross-sectional, time series, clustered, panel, and longitudinal data.
 
