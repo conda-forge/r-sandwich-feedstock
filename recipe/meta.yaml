@@ -1,4 +1,4 @@
-{% set version = '2.5-1' %}
+{% set version = "3.0-0" %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -10,11 +10,11 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/sandwich_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/sandwich/sandwich_{{ version }}.tar.gz
-  sha256: dbef6f4d12b83e166f9a2508b7c732b04493641685d6758d29f3609e564166d6
+  sha256: 828fe53b5e09db5015efd529b2db4dcd40251bce110fea7b0b219fa9ac36d529
 
 build:
-  merge_build_host: True  # [win]
-  number: 2
+  merge_build_host: true  # [win]
+  number: 0
   noarch: generic
   rpaths:
     - lib/R/lib/
@@ -37,11 +37,11 @@ test:
 
 about:
   home: https://CRAN.R-project.org/package=sandwich
-  license: GPL-2 | GPL-3
-  summary: Model-robust standard error estimators for cross-sectional, time series, clustered,
-    panel, and longitudinal data.
+  license: GPL-2.0-or-later
+  summary: Model-robust standard error estimators for cross-sectional, time series, clustered, panel, and longitudinal data.
   license_family: GPL3
-  license_file: '{{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-2'
+  license_file:
+    - {{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-2
 
 extra:
   recipe-maintainers:
