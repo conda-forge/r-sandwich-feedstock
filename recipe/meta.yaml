@@ -1,4 +1,4 @@
-{% set version = "3.0-1" %}
+{% set version = "3.0-2" %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -10,7 +10,7 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/sandwich_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/sandwich/sandwich_{{ version }}.tar.gz
-  sha256: f6584b7084f3223bbc0c4722f53280496be73849747819b0cb4e8f3910284a89
+  sha256: 6e30b6b554eb19430a60c45a8132fb7918ddb0013577bf6a62caeb163bdfe2b4
 
 build:
   merge_build_host: true  # [win]
