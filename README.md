@@ -1,11 +1,11 @@
-About r-sandwich
-================
+About r-sandwich-feedstock
+==========================
+
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/r-sandwich-feedstock/blob/main/LICENSE.txt)
 
 Home: https://CRAN.R-project.org/package=sandwich
 
 Package license: GPL-2.0-or-later
-
-Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/r-sandwich-feedstock/blob/main/LICENSE.txt)
 
 Summary: Model-robust standard error estimators for cross-sectional, time series, clustered, panel, and longitudinal data.
 
