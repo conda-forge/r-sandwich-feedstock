@@ -1,4 +1,4 @@
-{% set version = "3.1-0" %}
+{% set version = "3.1-1" %}
 {% set posix = 'm2-' if win else '' %}
 
 package:
@@ -9,10 +9,10 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/sandwich_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/sandwich/sandwich_{{ version }}.tar.gz
-  sha256: 96b0e105ee50391a1fd286e9556ba6669f08565fa30788b1a21bc861b0a023fa
+  sha256: ece51efa4283a98b3b4b4b9317fce4928b227942115dd84452b481fd6e9d9119
 
 build:
-  number: 1
+  number: 0
   noarch: generic
   rpaths:
     - lib/R/lib/
