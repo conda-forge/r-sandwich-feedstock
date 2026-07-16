@@ -1,26 +1,31 @@
-{% set version = "3.1-1" %}
+{% set version = "3.1-2" %}
 {% set posix = 'm2-' if win else '' %}
 
 package:
   name: r-sandwich
-  version: {{ version|replace("-", "_") }}
+  version: "{{ version|replace("-", "_") }}"
 
 source:
   url:
     - {{ cran_mirror }}/src/contrib/sandwich_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/sandwich/sandwich_{{ version }}.tar.gz
-  sha256: ece51efa4283a98b3b4b4b9317fce4928b227942115dd84452b481fd6e9d9119
+  sha256: d096fe24aba3f118f82ea2ac7c5d607dcdf2926c2c76fcf97ae14c81d4b58161
 
 build:
-  number: 1
+  number: 0
   noarch: generic
   rpaths:
     - lib/R/lib/
     - lib/
+  missing_dso_whitelist:
+    - '*/R.dll'        # [win]
+    - '*/Rblas.dll'    # [win]
+    - '*/Rlapack.dll'  # [win]
 
 requirements:
   build:
     - {{ posix }}zip               # [win]
+    - cross-r-base {{ r_base }}    # [build_platform != target_platform]
   host:
     - r-base
     - r-zoo
@@ -34,12 +39,22 @@ test:
     - "\"%R%\" -e \"library('sandwich')\""  # [win]
 
 about:
-  home: https://CRAN.R-project.org/package=sandwich
+  home: https://sandwich.R-Forge.R-project.org/
   license: GPL-2.0-or-later
-  summary: Model-robust standard error estimators for cross-sectional, time series, clustered, panel, and longitudinal data.
+  summary: 'Object-oriented software for model-robust covariance matrix estimators. Starting
+    out from the basic robust Eicker-Huber-White sandwich covariance methods include:
+    heteroscedasticity-consistent (HC) covariances for cross-section data; heteroscedasticity-
+    and autocorrelation-consistent (HAC) covariances for time series data (such as Andrews''
+    kernel HAC, Newey-West, and WEAVE estimators); clustered covariances (one-way and
+    multi-way); panel and panel-corrected covariances; outer-product-of-gradients covariances;
+    and (clustered) bootstrap covariances. All methods are applicable to (generalized)
+    linear model objects fitted by lm() and glm() but can also be adapted to other classes
+    through S3 methods. Details can be found in Zeileis et al. (2020) <doi:10.18637/jss.v095.i01>,
+    Zeileis (2004) <doi:10.18637/jss.v011.i10> and Zeileis (2006) <doi:10.18637/jss.v016.i09>.'
   license_family: GPL3
   license_file:
-    - {{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-2
+    - '{{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-2'
+    - '{{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-3'
 
 extra:
   recipe-maintainers:
